@@ -18,6 +18,11 @@ public class GroupBy {
 		Employee e6 = new Employee(6, "Frank", "Finance", 82000);
 		List<Employee> employees = Arrays.asList(e1, e2, e3, e4, e5, e6);
 
+		employees.stream().sorted(Comparator.comparing(Employee::getName).reversed()).forEach(System.out::println);
+
+		System.out.println(employees.stream().filter(x -> x.getSalary() > 65000)
+				.sorted(Comparator.comparing(Employee::getName)).map(Employee::getName));
+
 		// How do you group a list of objects by an attribute in Java using streams?
 		Map<String, List<Employee>> groupByDep = employees.stream()
 				.collect(Collectors.groupingBy(Employee::getDepartment));
